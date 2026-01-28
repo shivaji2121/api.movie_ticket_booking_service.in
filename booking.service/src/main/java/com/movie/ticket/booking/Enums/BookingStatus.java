@@ -1,4 +1,4 @@
-package com.movie.ticket.booking.system.serv.booking.service.Enums;
+package com.movie.ticket.booking.Enums;
 
 public enum BookingStatus {
     PENDING,

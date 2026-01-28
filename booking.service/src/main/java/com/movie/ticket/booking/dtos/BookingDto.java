@@ -1,31 +1,34 @@
-package com.movie.ticket.booking.system.serv.booking.service.dtos;
+package com.movie.ticket.booking.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.movie.ticket.booking.system.serv.booking.service.Enums.BookingStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
+import com.movie.ticket.booking.Enums.BookingStatus;
 import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Validated
+@Builder
 public class BookingDto {
 
-    @NotNull(message = "UserId is required")
+    private UUID bookingId;
+    @NotBlank(message = "UserId is required")
     private String userId;
-
     @Positive(message = "Movie id should be positive")
     @NotNull(message = "MovieId is required")
     private Integer movieId;
@@ -37,9 +40,10 @@ public class BookingDto {
     private LocalDate showDate;
     @NotNull(message = "Time is required")
     private LocalTime showTime;
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
     @NotNull(message = "Booking amount is required")
+    @Positive(message = "amount should be positive")
     private  Double bookingAmount;
 
 }

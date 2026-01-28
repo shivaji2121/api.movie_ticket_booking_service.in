@@ -1,8 +1,9 @@
-package com.movie.ticket.booking.system.serv.booking.service.entities;
+package com.movie.ticket.booking.entities;
 
-import com.movie.ticket.booking.system.serv.booking.service.Enums.BookingStatus;
+import com.movie.ticket.booking.Enums.BookingStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +16,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "booking")
 public class BookingEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "booking_id")
     private UUID bookingId;
     @Column(name = "user_id")

@@ -1,6 +1,6 @@
-package com.movie.ticket.booking.system.serv.booking.service.respository;
+package com.movie.ticket.booking.respository;
 
-import com.movie.ticket.booking.system.serv.booking.service.entities.BookingEntity;
+import com.movie.ticket.booking.entities.BookingEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
