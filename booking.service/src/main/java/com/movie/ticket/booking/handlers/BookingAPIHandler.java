@@ -10,18 +10,29 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @Slf4j
 public class BookingAPIHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ResponseDto> methodArgumentNotValidException(MethodArgumentNotValidException exception){
-        log.info(exception.getMessage());
-        List<ObjectError> errors=exception.getBindingResult().getAllErrors();
-        ResponseDto responseDto=ResponseDto.builder()
-                .errorMessage(errors.get(0).getDefaultMessage())
-                .build();
-        return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ResponseDto> methodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
+
+//        List<ObjectError> errors = methodArgumentNotValidException.getBindingResult().getAllErrors();
+//        List<String> errorMessages = new ArrayList<>();
+//        for (ObjectError error : errors) {
+//            errorMessages.add(error.getDefaultMessage());
+//        }
+        return new ResponseEntity<ResponseDto>(ResponseDto.builder()
+                .errorMessage(
+                        methodArgumentNotValidException.getBindingResult().getAllErrors()
+                                .stream()
+//                                .map(objectError -> objectError.getDefaultMessage())
+                                .map(ObjectError::getDefaultMessage)
+                                .collect(Collectors.toList())
+                )
+                .build(), HttpStatus.BAD_REQUEST);
     }
 }
