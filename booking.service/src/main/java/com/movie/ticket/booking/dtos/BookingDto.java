@@ -27,21 +27,28 @@ import java.util.UUID;
 public class BookingDto {
 
     private UUID bookingId;
+
     @NotBlank(message = "UserId is required")
     private String userId;
+
     @Positive(message = "Movie id should be positive")
     @NotNull(message = "MovieId is required")
     private Integer movieId;
+
     @NotNull(message = "You need to select atleast one seat")
     List<String> seatsSelected;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "Show date is required")
     @FutureOrPresent(message = "Show date cannot be in the past")
     private LocalDate showDate;
+
     @NotNull(message = "Time is required")
     private LocalTime showTime;
+
 //    @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
+
     @NotNull(message = "Booking amount is required")
     @Positive(message = "amount should be positive")
     private  Double bookingAmount;

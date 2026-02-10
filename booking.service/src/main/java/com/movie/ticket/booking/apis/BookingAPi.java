@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class BookingAPi {
     @Autowired
     private BookingService bookingService;
+
     @PostMapping(path = "/save")
-    public ResponseEntity<ResponseDto> createBooking(@Valid @RequestBody BookingDto bookingDto){
-    log.info("Entered into booking api: "+bookingDto);
-    ResponseDto responseDto =this.bookingService.createBooking(bookingDto);
-    return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+    public ResponseEntity<ResponseDto> createBooking(@Valid @RequestBody BookingDto bookingDto) {
+//        log.info("Entered into booking api: " + bookingDto);
+        ResponseDto responseDto = this.bookingService.createBooking(bookingDto);
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
     @GetMapping("/test")

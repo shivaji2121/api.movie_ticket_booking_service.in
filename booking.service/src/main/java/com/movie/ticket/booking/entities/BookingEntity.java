@@ -21,21 +21,29 @@ import java.util.UUID;
 public class BookingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+
     @Column(name = "booking_id")
     private UUID bookingId;
+
     @Column(name = "user_id")
     private String userId;
+
     @Column(name = "movie_id")
     private Integer movieId;
+
     @ElementCollection
     List<String> seatsSelected;
+
     @Column(name = "show_date")
     private LocalDate showDate;
+
     @Column(name = "show_time")
     private LocalTime showTime;
+
     @Column(name = "booking_status")
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
+
     @Column(name = "amount")
     private  Double bookingAmount;
 
